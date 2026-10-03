@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KarthikOfficial — Personal Locker</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2e;--panel2:#18223a;--text:#f5f7ff;--muted:#9ca8c7;--accent:#7c5cff;--accent2:#23c7ff;--danger:#ff5577;--border:#273452}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 10% 0%,#1c2250 0,transparent 35%),radial-gradient(circle at 100% 10%,#103c54 0,transparent 30%),var(--bg);color:var(--text);min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:260px;background:rgba(10,15,30,.86);border-right:1px solid var(--border);padding:24px 16px;position:sticky;top:0;height:100vh}.logo{font-size:22px;font-weight:800;padding:8px 12px 28px}.logo span{color:var(--accent2)}.nav button{width:100%;background:transparent;border:0;color:var(--muted);text-align:left;padding:13px 14px;border-radius:12px;margin:3px 0}.nav button:hover,.nav button.active{background:var(--panel2);color:white}.mini{margin-top:28px;padding:15px;border:1px solid var(--border);border-radius:15px;background:rgba(255,255,255,.025);color:var(--muted);font-size:12px;line-height:1.5}
+main{flex:1;padding:30px;max-width:1250px;margin:auto;width:100%}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}.title h1{margin:0;font-size:34px}.title p{margin:7px 0;color:var(--muted)}.search{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:11px 14px;color:white;width:230px;outline:none}.hero{padding:28px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(35,199,255,.07));border-radius:22px;margin-bottom:22px}.hero h2{font-size:27px;margin:0 0 8px}.hero p{color:var(--muted);margin:0}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:rgba(18,26,46,.88);border:1px solid var(--border);border-radius:18px;padding:20px;transition:.2s}.card:hover{transform:translateY(-2px);border-color:#3c4e78}.icon{font-size:28px}.card h3{margin:13px 0 5px}.card p{color:var(--muted);font-size:13px;min-height:38px}.open{border:0;background:var(--accent);color:white;padding:10px 13px;border-radius:10px}.section{margin-top:28px}.section h2{font-size:20px}.recent{display:grid;gap:10px}.item{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--border);padding:14px 16px;border-radius:13px}.item small{color:var(--muted)}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:15px}
+.folderHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.add{background:var(--accent);border:0;color:white;padding:11px 15px;border-radius:10px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}.note{background:var(--panel);border:1px solid var(--border);padding:18px;border-radius:16px}.note h3{margin:0 0 7px}.note p{white-space:pre-wrap;color:#cbd3e9;font-size:14px;line-height:1.55}.note small{color:var(--muted)}.actions{display:flex;gap:7px;margin-top:12px}.ghost,.delete{border:1px solid var(--border);background:transparent;color:#cbd3e9;padding:7px 10px;border-radius:8px}.delete{color:#ff8299}.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.box{width:min(560px,100%);background:#11192d;border:1px solid var(--border);border-radius:20px;padding:22px}.box h2{margin-top:0}.box input,.box textarea{width:100%;background:#0b1120;color:white;border:1px solid var(--border);border-radius:10px;padding:12px;margin:7px 0 13px;outline:none}.box textarea{min-height:150px;resize:vertical}.modalActions{display:flex;justify-content:flex-end;gap:8px}.cancel{background:transparent;color:white;border:1px solid var(--border);padding:10px 14px;border-radius:9px}.save{background:var(--accent);color:white;border:0;padding:10px 14px;border-radius:9px}
+@media(max-width:850px){.sidebar{width:75px;padding:15px 8px}.logo{font-size:0;text-align:center}.logo span{font-size:20px}.nav button{font-size:0;text-align:center}.nav button::first-letter{font-size:20px}.mini{display:none}.cards{grid-template-columns:repeat(2,1fr)}main{padding:20px}.search{width:160px}}
+@media(max-width:560px){.top{align-items:flex-start;flex-direction:column}.search{width:100%}.cards{grid-template-columns:1fr}.title h1{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo">Karthik<span>Official</span></div>
+  <div class="nav">
+    <button class="active" onclick="showPage('home',this)">🏠 Home</button>
+    <button onclick="showPage('documents',this)">📁 Documents</button>
+    <button onclick="showPage('gaming',this)">🎮 Gaming Setup</button>
+    <button onclick="showPage('ideas',this)">💡 Ideas</button>
+    <button onclick="showPage('words',this)">🔑 Important Words</button>
+  </div>
+  <div class="mini">Your saved notes are stored in this browser using local storage. Export regularly if the information is important.</div>
+</aside>
+
+<main>
+  <div id="home" class="page">
+    <div class="top"><div class="title"><h1>Welcome to KarthikOfficial</h1><p>Your personal digital locker for things that matter.</p></div><input class="search" id="search" placeholder="Search saved items..." oninput="renderHome()"></div>
+    <div class="hero"><h2>Keep your world organized.</h2><p>Save documents, gaming settings, ideas, and important words in dedicated folders.</p></div>
+    <div class="cards">
+      <div class="card"><div class="icon">📁</div><h3>Documents</h3><p>Save useful document notes and references.</p><button class="open" onclick="go('documents')">Open folder</button></div>
+      <div class="card"><div class="icon">🎮</div><h3>Gaming Setup</h3><p>Keep your PC, peripherals, settings and setup notes.</p><button class="open" onclick="go('gaming')">Open folder</button></div>
+      <div class="card"><div class="icon">💡</div><h3>Ideas</h3><p>Capture ideas before they disappear.</p><button class="open" onclick="go('ideas')">Open folder</button></div>
+      <div class="card"><div class="icon">🔑</div><h3>Important Words</h3><p>Store words, meanings, reminders and useful phrases.</p><button class="open" onclick="go('words')">Open folder</button></div>
+    </div>
+    <div class="section"><h2>Recently saved</h2><div id="recent" class="recent"></div></div>
+  </div>
+
+  <div id="documents" class="page" style="display:none"></div>
+  <div id="gaming" class="page" style="display:none"></div>
+  <div id="ideas" class="page" style="display:none"></div>
+  <div id="words" class="page" style="display:none"></div>
+</main>
+</div>
+
+<div class="modal" id="modal">
+ <div class="box">
+  <h2 id="modalTitle">Add item</h2>
+  <label>Title</label><input id="entryTitle" placeholder="Give it a name">
+  <label>Details</label><textarea id="entryBody" placeholder="Write or paste your information here..."></textarea>
+  <div class="modalActions"><button class="cancel" onclick="closeModal()">Cancel</button><button class="save" onclick="saveEntry()">Save</button></div>
+ </div>
+</div>
+
+<script>
+const folders={
+ documents:{name:"Documents",icon:"📁",desc:"Your document notes, references and saved information."},
+ gaming:{name:"Gaming Setup",icon:"🎮",desc:"Your gaming hardware, settings, upgrades and setup notes."},
+ ideas:{name:"Ideas",icon:"💡",desc:"A private space for your ideas and plans."},
+ words:{name:"Important Words",icon:"🔑",desc:"Important words, meanings, phrases and reminders."}
+};
+let data=JSON.parse(localStorage.getItem("karthikLocker")||'{"documents":[],"gaming":[],"ideas":[],"words":[]}');
+let currentFolder="documents", editingId=null;
+
+function persist(){localStorage.setItem("karthikLocker",JSON.stringify(data))}
+function go(page){document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));let btn=[...document.querySelectorAll(".nav button")].find(b=>b.textContent.toLowerCase().includes(folders[page]?.name.toLowerCase().split(" ")[0]||"home"));if(btn)btn.classList.add("active");showPage(page,btn)}
+function showPage(page,btn){
+ document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+ document.getElementById(page).style.display="block";
+ if(page==="home")renderHome(); else renderFolder(page);
+ if(btn){document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
+}
+function renderHome(){
+ let q=(document.getElementById("search").value||"").toLowerCase(), all=[];
+ Object.entries(data).forEach(([f,arr])=>arr.forEach(x=>{if(!q||(x.title+" "+x.body).toLowerCase().includes(q))all.push({...x,folder:f})}));
+ all.sort((a,b)=>b.created-a.created);
+ const r=document.getElementById("recent");
+ r.innerHTML=all.length?all.slice(0,8).map(x=>`<div class="item"><div><b>${esc(x.title)}</b><br><small>${folders[x.folder].icon} ${folders[x.folder].name} · ${new Date(x.created).toLocaleString()}</small></div><button class="ghost" onclick="go('${x.folder}')">Open</button></div>`).join(""):`<div class="empty">Nothing saved yet. Open a folder and add your first item.</div>`;
+}
+function renderFolder(f){
+ currentFolder=f;let cfg=folders[f], arr=data[f];
+ document.getElementById(f).innerHTML=`<div class="top"><div class="title"><h1>${cfg.icon} ${cfg.name}</h1><p>${cfg.desc}</p></div></div>
+ <div class="folderHead"><b>${arr.length} saved item${arr.length!==1?"s":""}</b><button class="add" onclick="openModal('${f}')">＋ Add new</button></div>
+ <div class="grid">${arr.length?arr.slice().reverse().map(x=>`<div class="note"><h3>${esc(x.title)}</h3><small>${new Date(x.created).toLocaleString()}</small><p>${esc(x.body)}</p><div class="actions"><button class="ghost" onclick="openModal('${f}','${x.id}')">Edit</button><button class="delete" onclick="removeEntry('${f}','${x.id}')">Delete</button></div></div>`).join(""):`<div class="empty">This folder is empty. Click “Add new” to save something.</div>`}</div>`;
+}
+function openModal(f,id=null){
+ currentFolder=f;editingId=id;document.getElementById("modal").classList.add("show");
+ document.getElementById("modalTitle").textContent=id?"Edit item":`Add to ${folders[f].name}`;
+ let x=id?data[f].find(v=>v.id===id):null;document.getElementById("entryTitle").value=x?.title||"";document.getElementById("entryBody").value=x?.body||"";document.getElementById("entryTitle").focus();
+}
+function closeModal(){document.getElementById("modal").classList.remove("show");editingId=null}
+function saveEntry(){
+ let title=document.getElementById("entryTitle").value.trim(),body=document.getElementById("entryBody").value.trim();if(!title)return alert("Please enter a title.");
+ if(editingId){let x=data[currentFolder].find(v=>v.id===editingId);x.title=title;x.body=body;x.updated=Date.now()}
+ else data[currentFolder].push({id:crypto.randomUUID(),title,body,created:Date.now()});
+ persist();closeModal();renderFolder(currentFolder);renderHome();
+}
+function removeEntry(f,id){if(confirm("Delete this saved item?")){data[f]=data[f].filter(x=>x.id!==id);persist();renderFolder(f);renderHome()}}
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+renderHome();
+</script>
+</body>
+</html>
